@@ -1,0 +1,17 @@
+{
+    "text": "[1.86][S01] Hello, my name is Abhitar. I am currently doing B.Tech in Mechanical Engineering.[7.81][9.06][S01] Uh.[9.96]",
+    "segments": [
+        {
+            "start": 1.86,
+            "end": 7.81,
+            "speaker": "S01",
+            "text": "Hello, my name is Abhitar. I am currently doing B.Tech in Mechanical Engineering."
+        },
+        {
+            "start": 9.06,
+            "end": 9.96,
+            "speaker": "S01",
+            "text": "Uh."
+        }
+    ]
+}
