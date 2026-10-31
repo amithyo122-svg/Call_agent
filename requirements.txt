@@ -1,3 +1,10 @@
 sounddevice
 soundfile 
 numpy
+transformers 
+torchaudio
+onnxruntime
+onnxruntime==1.20.1
+onnx==1.20.1
+IndicTransToolkit
+sentencepiece

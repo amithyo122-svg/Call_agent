@@ -1,8 +1,5 @@
-
-import json
-
 from app.config import settings
-from app.models.moss_transcriber import MossTranscriber
+from app.models.indic_transcriber import IndicTranscriber
 
 
 def main():
@@ -13,56 +10,24 @@ def main():
         print("Audio file not found!")
         return
 
-    # Initialize model
-    transcriber = MossTranscriber()
+    transcriber = IndicTranscriber()
 
-    # Convert speech to text
     result = transcriber.transcribe(audio_path)
 
-    # Display transcript
     print("\n========== TRANSCRIPTION ==========\n")
+    print(result)
 
-    print(result["text"])
-
-    print("\n========== SPEAKER SEGMENTS ==========\n")
-
-    for segment in result["segments"]:
-
-        print(
-            f"[{segment['start']:.2f}s - "
-            f"{segment['end']:.2f}s] "
-            f"{segment['speaker']}: "
-            f"{segment['text']}"
-        )
-
-    # Save results
     settings.TRANSCRIPTS_DIR.mkdir(
         parents=True,
         exist_ok=True
     )
 
-    with open(
-        settings.TRANSCRIPTS_DIR / "transcription.json",
-        "w",
-        encoding="utf-8"
-    ) as file:
+    output_file = settings.TRANSCRIPTS_DIR / "transcription.txt"
 
-        json.dump(
-            result,
-            file,
-            indent=4,
-            ensure_ascii=False
-        )
+    with open(output_file, "w", encoding="utf-8") as file:
+        file.write(result)
 
-    with open(
-        settings.TRANSCRIPTS_DIR / "transcription.txt",
-        "w",
-        encoding="utf-8"
-    ) as file:
-
-        file.write(result["text"])
-
-    print("\nTranscription saved successfully!")
+    print(f"\nTranscript saved to: {output_file}")
 
 
 if __name__ == "__main__":
